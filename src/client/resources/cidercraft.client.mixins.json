@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "fr.lumaa.cidercraft.mixin.client",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"InGameHudCider"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
