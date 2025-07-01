@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.StringControllerBuilder;
 import fr.lumaa.cidercraft.CiderCraftClient;
+import fr.lumaa.cidercraft.websocket.CiderData;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
@@ -69,7 +70,12 @@ public class CiderCraftConfig implements EditableData {
                                         .build())
                                 .build())
                         .build())
-                .save(() -> CiderCraftClient.dataManager.writeJson(this))
+                .save(() -> {
+                    CiderCraftClient.dataManager.writeJson(this);
+
+                    CiderCraftClient.websocket = new CiderData(this);
+                    CiderCraftClient.websocket.connectWebSocket();
+                })
                 .build()
                 .generateScreen(parent);
     }
